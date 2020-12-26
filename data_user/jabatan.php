@@ -13,17 +13,14 @@ if ($tambah<10) {
   <div class="col-sm-12">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Contact</a></li>
-      <li class="breadcrumb-item active">Customer</li>
+      <li class="breadcrumb-item"><a href="#">Data User</a></li>
+      <li class="breadcrumb-item active">Jabatan</li>
     </ol>
   </div>
 </div>
-<div class="card bg-gray">
-	<div class="card-body"><a href="" class="btn bg-primary" data-toggle="modal" data-target="#modal-lg"><i class="fa fa-plus"></i> Add Customer</a></div>
-</div>
 <div class="card">
 	<div class="card-header bg-info">
-		<div class="card-title">Data Customer</div>
+		<div class="card-title">Data Jabatan</div>
 		<form action="" method="POST">
 		  <div class="input-group input-group-sm float-right" style="width: 250px;">
 		    <input type="text" name="search" class="form-control float-right" placeholder="Search Customer" autofocus>
@@ -38,10 +35,8 @@ if ($tambah<10) {
 		<table class="table table-sm table-head-fixed text-nowrap font-10">
 			<thead>
 				<tr>
-					<th>ID Customer</th>
-					<th>Nama Customer</th>
-					<th>No Telp</th>
-					<th>Alamat</th>
+					<th>ID Bagian</th>
+					<th>Nama Bagian</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -49,20 +44,17 @@ if ($tambah<10) {
 			<?php 
 			if (isset($_POST['tampil'])) {
 				$search = $_POST['search'];
-				$sql = mysqli_query($koneksi, "SELECT * FROM tb_customer WHERE id_customer LIKE '%".$search."%' OR nama_customer LIKE '%".$search."%'");
+				$sql = mysqli_query($koneksi, "SELECT * FROM tb_bagian WHERE id_bagian LIKE '%".$search."%' OR nama_bagian LIKE '%".$search."%'");
 			}else{
-				$sql = mysqli_query($koneksi, "SELECT * FROM tb_customer");
+				$sql = mysqli_query($koneksi, "SELECT* FROM tb_bagian");
 			}
 			
 			while ($data = mysqli_fetch_array($sql)) { ?>
 				<tr>
-					<td><?= $data['id_customer']; ?></td>
-					<td><?= $data['nama_customer']; ?></td>
-					<td><?= $data['no_telpn']; ?></td>
-					<td><?= $data['alamat']; ?></td>
+					<td><?= $data['id_bagian']; ?></td>
+					<td><?= $data['nama_bagian']; ?></td>
 					<td>
-						<a href="#editCustomer" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_customer']; ?>"><i class="fa fa-edit"></i></a> || <a href="contact/customer/delete_customer.php?id=<?= $data['id_customer']; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data customer ini?')"><i class="fa fa-trash-alt"></i></a>
-					</td>
+						<a href="#datajabatan" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_bagian']; ?>"><i class="fa fa-edit"></i></a>
 				</tr>
 			<?php }
 			?>
@@ -80,7 +72,7 @@ if ($tambah<10) {
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	<form action="contact/customer/proses_input_customer.php" method="POST">
+	<form action="data_user/proses/input_jabatan.php" method="POST">
 	    <div class="modal-body">
 	      <div class="row">
 	      	<div class="col-sm-6">
@@ -118,22 +110,22 @@ if ($tambah<10) {
 	<!-- /.modal -->
 
 	<!-- modal update customer -->
-	<div class="modal fade" id="editCustomer">
-    <div class="modal-dialog modal-lg">
+	<div class="modal fade" id="datajabatan">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header bg-info">
-          <h4 class="modal-title">Edit Customer</h4>
+          <h4 class="modal-title">Edit Data Jabatan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-    <form action="contact/customer/edit_customer.php" method="POST">
+    <form action="data_user/proses/edit_jabatan.php" method="POST">
         <div class="modal-body">
-        	<div class="fetched-dataCsutomer"></div>
+        	<div class="fetched-datajabatan"></div>
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" name="simpan_perubahan" class="btn btn-primary">Save changes</button>
+          <button type="submit" name="simpan" class="btn btn-primary">Save changes</button>
         </div>
     </form>
       </div>

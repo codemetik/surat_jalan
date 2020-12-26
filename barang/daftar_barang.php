@@ -26,7 +26,7 @@ if ($tambah<10) {
 		<h5 class="card-title">Daftar Barang</h5>
     <form action="" method="POST">
       <div class="input-group input-group-sm float-right" style="width: 250px;">
-        <input type="text" name="search" class="form-control float-right" placeholder="Search Name">
+        <input type="text" name="search" class="form-control float-right" placeholder="Search Name" autofocus>
 
         <div class="input-group-append">
           <button type="submit" name="tampil" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -35,7 +35,7 @@ if ($tambah<10) {
     </form>
 	</div>
 	<div class="card-body table-responsive p-0" style="height: 450px;">
-      <table class="table table-hover table-bordered table-head-fixed text-nowrap font-12">
+      <table class="table table-sm table-hover table-bordered table-head-fixed text-nowrap font-12">
         <thead>
           <tr>
             <th>Kode Barang</th>
@@ -43,7 +43,6 @@ if ($tambah<10) {
             <th>Nama Barang</th>
             <th>QTY</th>
             <th>Harga Satuan</th>
-            <th>Customer</th>
             <th>Tanggal Barang</th>
             <th>Action</th>
           </tr>
@@ -54,7 +53,7 @@ if ($tambah<10) {
           $search = $_POST['search'];
           $sql = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_jenis Y ON y.id_barang = x.id_barang INNER JOIN tb_jenis z ON z.id_jenis = y.id_jenis WHERE x.id_barang = '".$search."' OR nama_barang LIKE '%".$search."%'");
         }else{
-          $sql = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_jenis Y ON y.id_barang = x.id_barang INNER JOIN tb_jenis z ON z.id_jenis = y.id_jenis");
+          $sql = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_jenis Y ON y.id_barang = x.id_barang INNER JOIN tb_jenis z ON z.id_jenis = y.id_jenis GROUP BY x.id_barang DESC");
         }
 
         while ($data = mysqli_fetch_array($sql)) {
@@ -63,19 +62,11 @@ if ($tambah<10) {
           <td>".$data['nama_jenis']."</td>
           <td>".$data['nama_barang']."</td>
           <td>".$data['qty']."</td>
-          <td>".$data['harga_satuan']."</td>";
-          $cekcus = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_customer Y ON y.id_barang = x.id_barang INNER JOIN tb_customer z ON z.id_customer = y.id_customer WHERE x.id_barang = '".$data['id_barang']."'");
-          $cekc = mysqli_num_rows($cekcus);
-          $dcekc = mysqli_fetch_array($cekcus);
-          if ($cekc > 0) {
-            echo "<td style='font-size:12px;' class='bg-success'>".$dcekc['nama_customer']."</td>";
-          }else{
-            echo "<td style='font-size:12px;' class='bg-danger'>Customer Belom Ada</td>";
-          }
+          <td>".rupiah($data['harga_satuan'])."</td>";
           ?>
           <td><?= $data['tgl_barang']; ?></td>
           <td>
-            <a href="#myModal" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_barang']; ?>"><i class="fa fa-edit"></i></a> || <a href="barang/proses/delete_barang.php?id=<?= $data['id_barang']; ?>" class="btn bg-danger"><i class="fa fa-trash-alt"></i></a>
+            <a href="#myModal" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_barang']; ?>"><i class="fa fa-edit"></i></a> || <a href="barang/proses/delete_barang.php?id=<?= $data['id_barang']; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data barang ini?')"><i class="fa fa-trash-alt"></i></a>
           </td>
           <?php "</tr>";
         }
@@ -104,7 +95,7 @@ if ($tambah<10) {
               		</div>
               		<div class="form-group">
               			<label>Jenis</label>
-              			<select class="form-control" name="id_jenis" required>
+              			<select class="form-control-sm select2" name="id_jenis" required>
               				<option>--Pilih--</option>
               				<?php 
               				$sjn = mysqli_query($koneksi, "SELECT * FROM tb_jenis");
@@ -121,7 +112,7 @@ if ($tambah<10) {
               			<input type="text" name="nama_barang" class="form-control" placeholder="Nama Barang .." required>
               		</div>
               		<div class="form-group">
-              			<label>Qty</label>
+              			<label>Qty Per Pak</label>
               			<input type="text" name="qty" class="form-control" placeholder="Qty ..">
               		</div>
               	</div>

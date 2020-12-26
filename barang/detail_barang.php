@@ -7,8 +7,8 @@ if (isset($_POST['rowid'])) {
 $sql = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_jenis Y ON y.id_barang = x.id_barang WHERE x.id_barang = '".$id."'");
 $data = mysqli_fetch_array($sql); 
 
-$customer = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_customer Y ON y.id_barang = x.id_barang WHERE x.id_barang = '".$id."'");
-$dcustomer = mysqli_fetch_array($customer);
+// $customer = mysqli_query($koneksi, "SELECT * FROM tb_barang X INNER JOIN tb_rols_customer Y ON y.id_barang = x.id_barang WHERE x.id_barang = '".$id."'");
+// $dcustomer = mysqli_fetch_array($customer);
 
 ?>
 
@@ -20,7 +20,7 @@ $dcustomer = mysqli_fetch_array($customer);
 		</div>
 		<div class="form-group">
 			<label>Janis</label>
-			<select class="form-control" name="id_jenis">
+			<select class="form-control-sm select2" name="id_jenis">
 				<option>--Pilih</option>
 				<?php 
 				$sjenis = mysqli_query($koneksi, "SELECT * FROM tb_jenis");
@@ -58,53 +58,7 @@ $dcustomer = mysqli_fetch_array($customer);
 				</div>			
 			</div>
 			<div class="col-sm-6">
-			<?php 
-			$cekcustomer = mysqli_query($koneksi, "SELECT * FROM tb_rols_customer WHERE id_barang = '".$data['id_barang']."'");
-			$cek = mysqli_num_rows($cekcustomer);
-			$dcek = mysqli_fetch_array($cekcustomer);
-			if ($cek > 0) {
-				//jika data sudah ada
-			?>
-			<!-- isi -->
-			<div class="form-group">
-				<label>Customer</label>
-				<select class="form-control" style="font-size: 12px;" name="id_customer">
-					<option>--Pilih--</option>
-				<?php 
-				$cus = mysqli_query($koneksi," SELECT * FROM tb_customer");
-				while ($dcus = mysqli_fetch_array($cus)) {
-					if ($dcustomer['id_customer'] == $dcus['id_customer']) {
-						$select = "selected";
-					}else{
-						$select = "";
-					}
-					echo "<option value='".$dcus['id_customer']."' ".$select.">".$dcus['nama_customer']."</option>";
-				}
-				?>
-				</select>
-			</div>
-			<!-- /isi -->
-			<?php 	
-			}else{
-				//jika data belum ada
-			?>
-			<!-- isi -->
-			<div class="form-group">
-				<label>Customer</label>
-				<select class="form-control" style="font-size: 12px;" name="id_customer">
-					<option>--Pilih--</option>
-				<?php 
-				$cus1 = mysqli_query($koneksi, "SELECT * FROM tb_customer");
-				while ($dcus1 = mysqli_fetch_array($cus1)) {
-					echo "<option value='".$dcus1['id_customer']."'>".$dcus1['nama_customer']."</option>";
-				}
-				?>
-				</select>
-			</div>
-			<!-- /iso -->
-			<?php 
-			}
-			?>
+			
 			</div>
 		</div>
 	</div>
@@ -113,3 +67,15 @@ $dcustomer = mysqli_fetch_array($customer);
 
 <?php }
 ?>
+
+<script src="../plugins/daterangepicker/daterangepicker.js"></script>
+<script>
+$(function () {
+    $('.select2').select2()
+
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+})
+</script>

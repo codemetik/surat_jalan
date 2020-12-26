@@ -20,4 +20,11 @@ function rupiah($angka){
 }
 // echo rupiah(1000000);
 
+function angka($ang){
+	
+	$angka = number_format($ang,0,'','.');
+	return $angka;
+ 
+}
+
 ?>

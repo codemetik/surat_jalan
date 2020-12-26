@@ -7,3 +7,45 @@
     </ol>
   </div>
 </div>
+<div class="card">
+	<div class="card-header bg-info">
+		<h5 class="card-title">Anda Berada di Halaman : Admin Gudang</h5>	
+	</div>
+	<div class="card-body table-responsive p-0" style="height: 450px;">
+		<table class="table table-hover table-head-fixed table-nowrap">
+			<thead>
+				<tr>
+					<th>Hak Akses</th>
+					<th>Show</th>
+					<th>Insert</th>
+					<th>Update</th>
+					<th>Delete</th>
+					<th>Print</th>
+				</tr>
+			</thead>
+			<?php 
+			$array = array(
+				'Contact Customer' => ['show' => 'Yes','insert' => 'Yes','update'=>'Yes','delete'=>'Yes','print'=>'-'],
+				'Daftar Barang' => ['show' => 'Yes','insert' => 'Yes','update'=>'Yes','delete'=>'Yes','print'=>'-'], 
+				'Stok Barang Tersedia' => ['show' => 'Yes','insert' => 'Yes','update'=>'Yes','delete'=>'Yes','print'=>'-'],
+				'Barang Keluar' => ['show' => 'Yes','insert' => 'Yes','update'=>'Yes','delete'=>'Yes','print'=>'-'],
+				'Kelola Surat Jalan' => ['show' => 'Yes','insert' => 'Yes','update'=>'-','delete'=>'-','print'=>'-'],
+				'History Surat Jalan' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'-'],
+				'Laporan' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'Yes']
+				); 
+			?>
+			<tbody>
+				<?php foreach ($array as $key => $val) {
+					echo "<tr>
+					<td>".$key."</td>
+					<td>".$val['show']."</td>
+					<td>".$val['insert']."</td>
+					<td>".$val['update']."</td>
+					<td>".$val['delete']."</td>
+					<td>".$val['print']."</td>
+					</tr>";
+				} ?>
+			</tbody>
+		</table>
+	</div>
+</div>
