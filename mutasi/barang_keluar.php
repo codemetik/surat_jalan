@@ -20,7 +20,17 @@ if ($tambah<10) {
 </div>
 <div class="card bg-gray">
 	<div class="card-body">
-		<a href="" class="btn bg-blue" data-toggle="modal" data-target="#addbarangkeluar"><i class="fa fa-plus"></i> Add Barang Keluar</a>
+    <?php 
+    if ($dc['id_bagian'] == 'BG0001') { ?>
+      <a href="" class="btn bg-blue" data-toggle="modal" data-target="#addbarangkeluar"><i class="fa fa-plus"></i> Add Barang Keluar</a>
+    <?php }else if($dc['id_bagian'] == 'BG0002'){
+
+    }else if($dc['id_bagian'] == 'BG0003'){
+
+    }else if($dc['id_bagian'] == 'BG0004'){
+
+    }
+    ?>
 	</div>
 </div>
 <div class="card">
@@ -51,7 +61,17 @@ if ($tambah<10) {
           <th>Customer</th>
 					<th>Tgl Brg Keluar</th>
           <th>Status SRT Jln</th>
-					<th>Action</th>
+          <?php 
+          if ($dc['id_bagian'] == 'BG0001') { ?>
+            <th>Action</th>
+          <?php }else if($dc['id_bagian'] == 'BG0002'){
+
+          }else if($dc['id_bagian'] == 'BG0003'){
+
+          }else if($dc['id_bagian'] == 'BG0004'){
+
+          }
+          ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,11 +106,21 @@ if ($tambah<10) {
 				<td>".$data['nilai']."</td>
         <td>".$data['nama_customer']."</td>
         <td>".$data['tgl_barang_keluar']."</td>
-        <td>".$data['status']."</td>"; ?>
-				<td readonly>
-                <a href="<?= $link; ?>" class="btn <?= $bga; ?>" data-toggle="modal" data-id="<?= $data['id_barang_keluar']; ?>"><i class="fa fa-edit"></i></a> || <a href="<?= $link1; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data barang keluar ini?"><i class="fa fa-trash-alt"></i></a>            
-                </td>
-                <?php echo "</tr>";
+        <td>".$data['status']."</td>"; 
+        if ($dc['id_bagian'] == 'BG0001') { ?>
+          <td readonly>
+          <a href="<?= $link; ?>" class="btn <?= $bga; ?>" data-toggle="modal" data-id="<?= $data['id_barang_keluar']; ?>"><i class="fa fa-edit"></i></a> || <a href="<?= $link1; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data barang keluar ini?"><i class="fa fa-trash-alt"></i></a>            
+        </td>
+          <?php }else if($dc['id_bagian'] == 'BG0002'){
+
+          }else if($dc['id_bagian'] == 'BG0003'){
+
+          }else if($dc['id_bagian'] == 'BG0004'){
+
+          }
+        ?>
+				
+          <?php echo "</tr>";
 			}
 			?>
 			</tbody>

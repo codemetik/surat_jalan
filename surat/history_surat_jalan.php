@@ -53,7 +53,18 @@
 					<td><?= $data['no_po_customer']; ?></td>
 					<td><?= $data['tgl_surat_jalan']; ?></td>
 					<td>
-						<a href="#showsuratjalan" data-toggle="modal" data-id="<?= $data['id_surat_jalan']; ?>" class="btn bg-gray"><i class="fa fa-table"></i></a> || <a href="laporan/data/surat_jalan.php?idsurat=<?= $data['id_surat_jalan']; ?>" target="_blank" class="btn bg-gray"><i class="fa fa-print"></i></a>
+						<a href="#showsuratjalan" data-toggle="modal" data-id="<?= $data['id_surat_jalan']; ?>" class="btn bg-gray"><i class="fa fa-table"></i></a> 
+						<?php 
+						if ($dc['id_bagian'] == 'BG0001') {
+							
+						}else if($dc['id_bagian'] == 'BG0002'){ ?>
+							|| <a href="laporan/data/surat_jalan.php?idsurat=<?= $data['id_surat_jalan']; ?>" target="_blank" class="btn bg-gray"><i class="fa fa-print"></i></a>
+						<?php }else if($dc['id_bagian'] == 'BG0003'){ ?>
+							 || <a href="laporan/data/surat_jalan.php?idsurat=<?= $data['id_surat_jalan']; ?>" target="_blank" class="btn bg-gray"><i class="fa fa-print"></i></a>
+						<?php }else if($dc['id_bagian'] == 'BG0004'){
+
+						}
+						?>
 					</td>
 				</tr>
 			<?php }

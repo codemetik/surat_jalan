@@ -20,8 +20,18 @@ if ($tambah<10) {
 </div>
 <div class="card bg-gray">
 	<div class="card-body">
-		<a href="#myModal" class="btn bg-blue" data-toggle="modal" data-target="#modal-sm"><i class="fa fa-edit"></i> Input New Stok</a>
-    <a href="#addstokbarang" class="btn bg-blue" data-toggle="modal" data-target="#addstokbarang"><i class="fa fa-plus"></i> Add Stok</a>	
+    <?php 
+    if ($dc['id_bagian'] == 'BG0001') { ?>
+      <a href="#myModal" class="btn bg-blue" data-toggle="modal" data-target="#modal-sm"><i class="fa fa-edit"></i> Input New Stok</a>
+      <a href="#addstokbarang" class="btn bg-blue" data-toggle="modal" data-target="#addstokbarang"><i class="fa fa-plus"></i> Add Stok</a> 
+    <?php }else if($dc['id_bagian'] == 'BG0002'){
+
+    }else if($dc['id_bagian'] == 'BG0003'){
+
+    }else if($dc['id_bagian'] == 'BG0004'){
+
+    }
+    ?>
 	</div>
 </div>
 <div class="card">
@@ -47,7 +57,17 @@ if ($tambah<10) {
           <th>Harga Satuan</th>
           <th>Nilai</th>
 					<th>Tgl Input</th>
-					<th>Action</th>
+          <?php 
+          if ($dc['id_bagian'] == 'BG0001') {
+          echo "<th>Action</th>";    
+          }else if($dc['id_bagian'] == 'BG0002'){
+
+          }else if($dc['id_bagian'] == 'BG0003'){
+
+          }else if($dc['id_bagian'] == 'BG0004'){
+
+          }
+          ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,9 +86,17 @@ if ($tambah<10) {
         <td>".rupiah($data['harga_satuan'])."</td>
         <td>".rupiah($data['jumlah_stok'] * $data['harga_satuan'])."</td>
 				<td>".$data['tgl_input']."</td>";
-				?>
-				<td><a href="#editStok" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_barang']; ?>"><i class="fa fa-edit"></i></a> || <a href="barang/proses/delete_stok_barang.php?id=<?= $data['id_stok']; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data stok ini?')"><i class="fa fa-trash-alt"></i></a></td>
-				<?php
+				if ($dc['id_bagian'] == 'BG0001') { ?>
+          <td>
+            <a href="#editStok" class="btn bg-blue" data-toggle="modal" data-id="<?= $data['id_barang']; ?>"><i class="fa fa-edit"></i></a> || <a href="barang/proses/delete_stok_barang.php?id=<?= $data['id_stok']; ?>" class="btn bg-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data stok ini?')"><i class="fa fa-trash-alt"></i></a>
+          </td>
+        <?php }else if($dc['id_bagian'] == 'BG0002'){
+
+        }else if($dc['id_bagian'] == 'BG0003'){
+
+        }else if($dc['id_bagian'] == 'BG0004'){
+
+        }
 				echo "</tr>";
 			}
 			?>

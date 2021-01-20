@@ -25,7 +25,7 @@
       </thead>
       <?php 
       $array = array(
-        'Stok Barang' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'-'],
+        'Stok Barang Tersedia' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'-'],
         'Barang Keluar' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'-'],
         'History Surat Jalan' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'Yes'],
         'Laporan' => ['show' => 'Yes','insert' => '-','update'=>'-','delete'=>'-','print'=>'Yes'],

@@ -168,3 +168,39 @@ SELECT CONCAT(SUM(jumlah_stok),' Pcs') AS st FROM tb_stok
 SELECT * FROM tb_barang_keluar
 
 SELECT * FROM tb_surat_jalan_final
+
+
+SELECT * FROM tb_surat_jalan
+
+SELECT * FROM tb_barang X
+INNER JOIN tb_stok Y ON y.id_barang = x.id_barang
+
+SELECT * FROM tb_rols_barang_keluar X 
+INNER JOIN tb_barang_keluar Y ON y.id_barang_keluar = x.id_barang_keluar 
+INNER JOIN tb_barang z ON z.id_barang = y.id_barang 
+INNER JOIN tb_customer a ON a.id_customer = x.id_customer 
+GROUP BY id_rols_barang_keluar DESC
+
+SELECT x.id_bagian, nama_bagian, z.id_user, nama_user, username, PASSWORD FROM tb_bagian X
+INNER JOIN tb_rols_user Y ON y.id_bagian = x.id_bagian
+INNER JOIN tb_user z ON z.id_user = y.id_user
+
+SELECT * FROM tb_user X
+INNER JOIN tb_rols_user Y ON y.id_user = x.id_user
+INNER JOIN tb_bagian z ON z.id_bagian = y.id_bagian
+
+
+
+SELECT * FROM tb_user
+SELECT * FROM tb_rols_user
+SELECT * FROM tb_bagian
+SELECT * FROM tb_customer
+SELECT * FROM tb_barang_keluar
+SELECT * FROM tb_surat_jalan
+SELECT * FROM tb_surat_jalan_masal
+SELECT * FROM tb_surat_jalan_final
+SELECT * FROM tb_barang
+SELECT * FROM tb_stok
+SELECT * FROM tb_add_stok
+
+SELECT* FROM tb_bagian
