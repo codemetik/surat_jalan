@@ -34,8 +34,8 @@ date_default_timezone_set('Asia/Jakarta');
     <div class="row">
       <div class="col-12">
         <h2 class="page-header">
-          <i class="fas fa-globe"></i> <u>PT. PURNAMAJAYA BHAKTI UTAMA</u>
-          <small class="float-right">Date: <?= date('Y/m/d'); ?></small>
+          <!-- <i class="fas fa-globe"></i> <u>PT. PURNAMAJAYA BHAKTI UTAMA</u> -->
+          <!-- <small class="float-right">Date: <?= date('Y/m/d'); ?></small> -->
         </h2>
       </div>
       <!-- /.col -->
@@ -44,10 +44,10 @@ date_default_timezone_set('Asia/Jakarta');
     <div class="row invoice-info">
       <div class="col-sm-12 invoice-col">
         <address>
-          Head Office : Jl. Raya Buaran Gardu No. 165 Serpong - Tangerang Selatan Phone : (021)75872217, 756722670 Fax : (021)75872138<br>
+          <!-- Head Office : Jl. Raya Buaran Gardu No. 165 Serpong - Tangerang Selatan Phone : (021)75872217, 756722670 Fax : (021)75872138<br>
           Factory: Jl. Nibanrimin No. 33 Buaran Gardu Serpong - Tangerang Selatan Phone : (021)7561988, 7561983<br>
           Branch Office : Jl. Rasamala Elok No. 35 Jakarta Timur Phone : (021)4807744<br>
-          Email: pbu.marketing@yahoo.com pbu.1988@yahoo.com
+          Email: pbu.marketing@yahoo.com pbu.1988@yahoo.com -->
         </address>
       </div>
       <div class="col-sm-6 invoice-col">
