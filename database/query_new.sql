@@ -154,3 +154,4 @@ INNER JOIN tb_specialis Y ON y.id_specialis = x.id_specialis
 INNER JOIN tb_user z ON z.id_user = x.id_user
 
 TIMESTAMPDIFF(YEAR,tanggal_lahir,NOW())
+
