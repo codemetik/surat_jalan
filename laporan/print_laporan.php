@@ -23,16 +23,35 @@ $dk = mysqli_fetch_array($sqlk);
 $sqlsj = mysqli_query($koneksi, "SELECT count(*) as sj FROM tb_surat_jalan_final");
 $dsj = mysqli_fetch_array($sqlsj);
 
+$cekuser = mysqli_query($koneksi, "SELECT x.id_bagian, nama_bagian, z.id_user, nama_user, username, PASSWORD FROM tb_bagian X INNER JOIN tb_rols_user Y ON y.id_bagian = x.id_bagian INNER JOIN tb_user z ON z.id_user = y.id_user WHERE z.id_user = '".$_SESSION['id_user']."'");
+        $ddc = mysqli_fetch_array($cekuser);
+
 ?>
 <div class="card card-body">
 	<div class="row">
 	<div class="col-5 col-sm-3">
-	    <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-	      <a class="nav-link" id="vert-tabs-customer-tab" data-toggle="pill" href="#vert-tabs-customer" role="tab" aria-controls="vert-tabs-customer" aria-selected="true">Data Customer</a>
-	      <a class="nav-link" id="vert-tabs-daftar-tab" data-toggle="pill" href="#vert-tabs-daftar" role="tab" aria-controls="vert-tabs-daftar" aria-selected="false">Daftar Nama Barang</a>
-	      <a class="nav-link" id="vert-tabs-stok-tab" data-toggle="pill" href="#vert-tabs-stok" role="tab" aria-controls="vert-tabs-stok" aria-selected="false">Stok Barang Tersedia</a>
-	      <a class="nav-link" id="vert-tabs-barang-tab" data-toggle="pill" href="#vert-tabs-barang" role="tab" aria-controls="vert-tabs-barang" aria-selected="false">Barang Keluar</a>
-	      <a class="nav-link active" id="vert-tabs-surat-tab" data-toggle="pill" href="#vert-tabs-surat" role="tab" aria-controls="vert-tabs-surat" aria-selected="false">Surat Jalan</a>
+		<div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+		<?php 
+		if ($ddc['id_bagian'] == 'BG0001') { ?>
+			<a class="nav-link" id="vert-tabs-customer-tab" data-toggle="pill" href="#vert-tabs-customer" role="tab" aria-controls="vert-tabs-customer" aria-selected="true">Data Customer</a>
+		      <a class="nav-link" id="vert-tabs-daftar-tab" data-toggle="pill" href="#vert-tabs-daftar" role="tab" aria-controls="vert-tabs-daftar" aria-selected="false">Daftar Nama Barang</a>
+		      <a class="nav-link" id="vert-tabs-stok-tab" data-toggle="pill" href="#vert-tabs-stok" role="tab" aria-controls="vert-tabs-stok" aria-selected="false">Stok Barang Tersedia</a>
+		      <a class="nav-link" id="vert-tabs-barang-tab" data-toggle="pill" href="#vert-tabs-barang" role="tab" aria-controls="vert-tabs-barang" aria-selected="false">Barang Keluar</a>
+		      <a class="nav-link active" id="vert-tabs-surat-tab" data-toggle="pill" href="#vert-tabs-surat" role="tab" aria-controls="vert-tabs-surat" aria-selected="false">Surat Jalan</a>
+		<?php }else if($ddc['id_bagian'] == 'BG0002'){ ?>
+				<a class="nav-link" id="vert-tabs-stok-tab" data-toggle="pill" href="#vert-tabs-stok" role="tab" aria-controls="vert-tabs-stok" aria-selected="false">Stok Barang Tersedia</a>
+		      <a class="nav-link" id="vert-tabs-barang-tab" data-toggle="pill" href="#vert-tabs-barang" role="tab" aria-controls="vert-tabs-barang" aria-selected="false">Barang Keluar</a>
+		      <a class="nav-link active" id="vert-tabs-surat-tab" data-toggle="pill" href="#vert-tabs-surat" role="tab" aria-controls="vert-tabs-surat" aria-selected="false">Surat Jalan</a>
+		<?php }else if($ddc['id_bagian'] == 'BG0003'){ ?>
+				<a class="nav-link" id="vert-tabs-stok-tab" data-toggle="pill" href="#vert-tabs-stok" role="tab" aria-controls="vert-tabs-stok" aria-selected="false">Stok Barang Tersedia</a>
+		      <a class="nav-link" id="vert-tabs-barang-tab" data-toggle="pill" href="#vert-tabs-barang" role="tab" aria-controls="vert-tabs-barang" aria-selected="false">Barang Keluar</a>
+		      <a class="nav-link active" id="vert-tabs-surat-tab" data-toggle="pill" href="#vert-tabs-surat" role="tab" aria-controls="vert-tabs-surat" aria-selected="false">Surat Jalan</a>
+		<?php }else if($ddc['id_bagian'] == 'BG0004'){ ?>
+			<a class="nav-link" id="vert-tabs-stok-tab" data-toggle="pill" href="#vert-tabs-stok" role="tab" aria-controls="vert-tabs-stok" aria-selected="false">Stok Barang Tersedia</a>
+		      <a class="nav-link" id="vert-tabs-barang-tab" data-toggle="pill" href="#vert-tabs-barang" role="tab" aria-controls="vert-tabs-barang" aria-selected="false">Barang Keluar</a>
+		      <a class="nav-link active" id="vert-tabs-surat-tab" data-toggle="pill" href="#vert-tabs-surat" role="tab" aria-controls="vert-tabs-surat" aria-selected="false">Surat Jalan</a>
+		<?php }
+		?>
 	    </div>
 	  </div>
 	  <div class="col-7 col-sm-9">
@@ -64,7 +83,7 @@ $dsj = mysqli_fetch_array($sqlsj);
 	      <div class="tab-pane fade show active" id="vert-tabs-surat" role="tabpanel" aria-labelledby="vert-tabs-surat-tab">
 	         <!-- Surat Jalan -->
 	         <h5>Data Surat Jalan sebanyak : <i><?= $dsj['sj']." Data"; ?></i></h5>
-	         <a href="laporan/data/lap_surat_jalan.php"><i class="fa fa-print"></i> Download</a>
+	         <a href="laporan/data/lap_surat_jalan.php" target="_blank"><i class="fa fa-print"></i> Download</a>
 	      </div>
 	    </div>
 	  </div>
